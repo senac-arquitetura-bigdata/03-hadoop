@@ -1,14 +1,13 @@
 from mrjob.job import MRJob
 
-class MRWordFrequencyCount(MRJob):
+class ContadorFrequencias(MRJob):
+    def mapper(self, _, linha):
+        yield "caracteres", len(linha)
+        yield "palavras", len(linha.split())
+        yield "linhas", 1
 
-    def mapper(self, _, line):
-        yield "chars", len(line)
-        yield "words", len(line.split())
-        yield "lines", 1
-
-    def reducer(self, key, values):
-        yield key, sum(values)
+    def reducer(self, chave, valores):
+        yield chave, sum(valores)
 
 if __name__ == '__main__':
-    MRWordFrequencyCount.run()
+    ContadorFrequencias.run()

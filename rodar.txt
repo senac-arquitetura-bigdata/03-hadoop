@@ -1,2 +1,3 @@
 pip install -r requirements.txt
 python 01-intro.py arquivo.txt
+python 02-multistep.py arquivo.txt saida.txt
