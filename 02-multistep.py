@@ -3,14 +3,14 @@ from mrjob.step import MRStep
 
 class ContadorFrequencias(MRJob):
     def mapper(self, _, linha):
-        yield "palavras-linhas", [len(linha.split()), 1]
+        yield "palavras-linhas", {'palavras': len(linha.split()), 'linhas': 1}
 
     def reducer(self, chave, valores):
         palavras = 0
         linhas = 0
         for valor in valores:
-            palavras += valor[0]
-            linhas += valor[1] 
+            palavras += valor['palavras']
+            linhas += valor['linhas']
 
         yield chave, [palavras, linhas]
 

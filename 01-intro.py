@@ -1,4 +1,5 @@
 from mrjob.job import MRJob
+from mrjob.step import MRStep
 
 class ContadorFrequencias(MRJob):
     def mapper(self, _, linha):
